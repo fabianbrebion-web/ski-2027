@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>html{color-scheme:light}body{margin:0;font-size:14px}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}</style><title>Chalet ski 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+/* Mise en page : une colonne de fiches comme des panneaux de station, sélecteur du nombre de payeurs en tête, chiffres qui se recalculent */
+:root{
+  --bg:#F3F1EC; --surface:#FBFAF7; --ink:#1B2A4A; --muted:#5A6377; --line:#DCD6CA;
+  --accent:#A97C50; --accent-soft:#EFE4D6; --good:#4C5F3D; --good-soft:#E3E8DA; --warn:#9A5B1E; --warn-soft:#F3E3D1;
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1727; --surface:#172236; --ink:#ECE7DC; --muted:#A2A9B7; --line:#2A3651;
+    --accent:#D3A676; --accent-soft:#33291F; --good:#A3BC8E; --good-soft:#202C1F; --warn:#E3A566; --warn-soft:#352616;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1727; --surface:#172236; --ink:#ECE7DC; --muted:#A2A9B7; --line:#2A3651;
+  --accent:#D3A676; --accent-soft:#33291F; --good:#A3BC8E; --good-soft:#202C1F; --warn:#E3A566; --warn-soft:#352616;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;padding:0 16px}
+.wrap{max-width:760px;margin:0 auto;padding-block:28px 48px;display:flex;flex-direction:column;gap:24px}
+h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:.01em;line-height:1.1;margin:0;text-wrap:balance}
+h1{font-size:clamp(2.4rem,8vw,3.4rem);text-transform:uppercase}
+h2{font-size:1.5rem;text-transform:uppercase}
+.lede{color:var(--muted);margin:6px 0 0;max-width:62ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{font-size:.85rem;padding:4px 10px;border:1px solid var(--line);border-radius:999px;background:var(--surface);white-space:nowrap}
+.picker{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.picker p{margin:0;color:var(--muted);font-size:.9rem}
+.label{font-family:var(--display);font-size:1rem;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{font:600 1.05rem/1 var(--body);font-variant-numeric:tabular-nums;min-width:46px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.seg button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.cards{display:flex;flex-direction:column;gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.card-head{padding:16px 16px 12px;display:flex;flex-direction:column;gap:6px;border-bottom:1px solid var(--line)}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.letter{font-family:var(--display);font-weight:700;font-size:1rem;color:var(--accent);letter-spacing:.08em}
+.station{color:var(--muted);font-size:.92rem}
+.badge{font-size:.78rem;font-weight:600;padding:3px 8px;border-radius:6px;white-space:nowrap}
+.badge.ok{background:var(--good-soft);color:var(--good)}
+.badge.wait{background:var(--warn-soft);color:var(--warn)}
+.money{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line)}
+.money div{background:var(--surface);padding:12px 14px;min-width:0}
+.money .k{font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.money .v{font-family:var(--display);font-size:1.6rem;font-weight:700;font-variant-numeric:tabular-nums;line-height:1.15}
+.money .v.big{color:var(--accent)}
+.money .s{font-size:.8rem;color:var(--muted)}
+.full{color:var(--warn);font-weight:600;font-size:.95rem}
+.body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:14px}
+dl{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:6px 14px;margin:0;font-size:.95rem}
+dt{color:var(--muted)}
+dd{margin:0;min-width:0}
+.alt{display:flex;flex-direction:column;gap:4px}
+.alt-track{position:relative;height:8px;border-radius:4px;background:var(--line)}
+.alt-fill{position:absolute;top:0;bottom:0;border-radius:4px;background:var(--ink);opacity:.8}
+.alt-scale{display:flex;justify-content:space-between;font-size:.72rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.pm{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pm ul{margin:4px 0 0;padding-left:18px;font-size:.93rem}
+.pm h3{font-size:1rem;letter-spacing:.06em;text-transform:uppercase}
+.pm .plus h3{color:var(--good)}
+.pm .minus h3{color:var(--warn)}
+.link{align-self:flex-start;font-weight:600;color:var(--ink);text-decoration:none;border-bottom:2px solid var(--accent);padding-bottom:1px}
+.link:hover{color:var(--accent)}
+.notes{font-size:.88rem;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:6px}
+.notes p{margin:0}
+.vote{background:var(--ink);color:var(--bg);border-radius:12px;padding:18px 16px}
+.vote h2{color:var(--bg)}
+.vote p{margin:6px 0 0}
+@media (max-width:520px){
+  .pm{grid-template-columns:1fr}
+  .money .v{font-size:1.35rem}
+}
+@media (prefers-reduced-motion:no-preference){ .money .v{transition:color .2s} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Ski 2027</h1>
+    <p class="lede">4 chalets pour notre semaine au ski. Chaque fiche donne le prix du logement et une estimation du coût total par personne. Choisis le nombre de payeurs pour voir les montants changer.</p>
+    <div class="facts">
+      <span class="chip">30 janv. → 6 févr. 2027</span>
+      <span class="chip">Hors vacances scolaires</span>
+      <span class="chip">Départ Nantes / Angers</span>
+      <span class="chip">Forfait 6 jours</span>
+    </div>
+  </header>
+
+  <section class="picker" aria-labelledby="pick-label">
+    <span class="label" id="pick-label">Nombre de payeurs</span>
+    <div class="seg" id="seg" role="group" aria-labelledby="pick-label"></div>
+    <p>Milo ne paie pas, mais il compte pour les places : il faut une place de plus que le nombre de payeurs.</p>
+  </section>
+
+  <section class="cards" id="cards" aria-label="Chalets comparés"></section>
+
+  <section class="vote">
+    <h2>À vous de jouer</h2>
+    <p>Dites dans le groupe quel chalet vous préférez, avec un deuxième choix. Plus on est nombreux, moins ça coûte par personne.</p>
+  </section>
+
+  <footer class="notes">
+    <p><strong>Comment le total est estimé :</strong> logement ÷ payeurs, plus le forfait 6 jours, environ 80 € de location de matériel, environ 140 € de courses et d'apéros, et la route (environ 110 € par personne pour les Alpes, 85 € pour les Pyrénées, à 3 par voiture). Seuls les prix de logement marqués « Prix vérifié » sont exacts. Le reste est une estimation.</p>
+    <p>Prix relevés le 13 octobre 2026. Les disponibilités peuvent changer d'ici la réservation.</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var EXTRA = 80 + 140; // location + courses
+  var ALT_MIN = 1000, ALT_MAX = 2800;
+  var chalets = [
+    {
+      id:"A", nom:"Grande maison de 180 m²", station:"Saint-Jean-d'Arves · Les Sybelles (Alpes)",
+      prix:[2341,2341], verifie:true, badge:"Prix vérifié",
+      places:15, chambres:"5 chambres, dont 4 doubles · 2 salles de bain",
+      dates:"Dim. 31 janv. → dim. 7 févr. (le samedi n'est pas libre)",
+      pistes:"Navette gratuite à 30 m, environ 5 min",
+      domaine:"Environ 275 km de pistes", alt:[1100,2620],
+      forfait:307, forfaitTxt:"307 €", route:110, routeTxt:"Environ 8 h",
+      avis:"4,88/5 (43 avis)",
+      plus:["Le moins cher des 4","Jusqu'à 15 places, idéal si on est plus nombreux","Le plus grand domaine skiable"],
+      moins:["Navette obligatoire pour aller aux pistes","2 salles de bain seulement","Retour le dimanche, avec reprise le lundi"],
+      url:"https://www.airbnb.fr/rooms/46456420"
+    },
+    {
+      id:"B", nom:"Chalet premium 150 m²", station:"Saint-François-Longchamp 1450 · Grand Domaine (Alpes)",
+      prix:[2591,2591], verifie:true, badge:"Prix vérifié",
+      places:12, chambres:"3 doubles + dortoir + mezzanine · 3 salles d'eau",
+      dates:"Sam. 30 janv. → sam. 6 févr.",
+      pistes:"Remontées et commerces à 300 m à pied",
+      domaine:"165 km de pistes", alt:[1250,2514],
+      forfait:288, forfaitTxt:"Environ 288 € en ligne", route:110, routeTxt:"Environ 8 h",
+      avis:"Annonce récente : 1 avis (5/5), conciergerie notée 4,53/5",
+      plus:["Pistes à pied","Du samedi au samedi","Poêle à granulés, garage, local à skis"],
+      moins:["Une seule place de garage","Très peu d'avis sur le chalet lui-même","Cours de ski enfants à vérifier hors vacances"],
+      url:"https://www.airbnb.fr/rooms/1586370025465376713"
+    },
+    {
+      id:"C", nom:"Gîte Stella Matutina, 275 m²", station:"Barèges · Grand Tourmalet (Pyrénées)",
+      prix:[2450,2800], verifie:false, badge:"Prix à confirmer",
+      places:14, chambres:"5 chambres, chacune avec sa salle d'eau · 4 doubles",
+      dates:"Disponibilité à confirmer auprès du propriétaire",
+      pistes:"Navette gratuite à 50 m, environ 10 min",
+      domaine:"100 km de pistes", alt:[1250,2500],
+      forfait:285, forfaitTxt:"239 € + carte No Souci (≈ 46 €, à confirmer)", route:85, routeTxt:"Environ 6 h 30",
+      avis:"4,91/5 (78 avis)",
+      plus:["Le plus spacieux, une salle d'eau par chambre","Cheminée et jeux de société","1 h 30 à 2 h de route en moins"],
+      moins:["Prix entre 2 450 et 2 800 €, à faire chiffrer","Domaine plus petit","Neige moins régulière dans les Pyrénées"],
+      url:"https://www.tourisme-occitanie.com/fr/fiche/hebergement-locatif/gite-stella-matutina-bareges_TFOHLOMIP065V51XN69/"
+    },
+    {
+      id:"D", nom:"L'IZAR, duplex 128 m²", station:"La Mongie · Grand Tourmalet (Pyrénées)",
+      prix:[2798,2798], verifie:true, badge:"Prix vérifié · ménage et linge inclus",
+      places:10, chambres:"4 chambres (suite, double, dortoir, twin) · 3 salles de bain",
+      dates:"Sam. 30 janv. → sam. 6 févr.",
+      pistes:"Skis aux pieds",
+      domaine:"100 km de pistes", alt:[1250,2500],
+      forfait:285, forfaitTxt:"239 € + carte No Souci (≈ 46 €, à confirmer)", route:85, routeTxt:"Environ 6 h 30",
+      avis:"4,95/5 (39 avis)",
+      plus:["Skis aux pieds","Ménage et linge inclus","Excellents avis"],
+      moins:["Le plus cher","10 places au maximum, donc 9 payeurs","Appartement en résidence, moins « chalet »"],
+      url:"https://www.airbnb.fr/rooms/50615887"
+    }
+  ];
+
+  var n = 7;
+  try { var saved = parseInt(localStorage.getItem("ski27-payeurs"),10); if(saved>=7 && saved<=12) n = saved; } catch(e){}
+
+  function eur(x){ return Math.round(x).toLocaleString("fr-FR") + " €"; }
+  function range(a,b){ return Math.round(a)===Math.round(b) ? eur(a) : Math.round(a).toLocaleString("fr-FR") + "–" + eur(b); }
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+  var seg = document.getElementById("seg");
+  for (var i=7;i<=12;i++){
+    var b = document.createElement("button");
+    b.type="button"; b.id="payeurs-"+i; b.textContent=i; b.setAttribute("aria-pressed", i===n ? "true":"false");
+    b.addEventListener("click", (function(v){ return function(){ n=v; try{localStorage.setItem("ski27-payeurs", String(v));}catch(e){} render(); }; })(i));
+    seg.appendChild(b);
+  }
+
+  function altBar(a){
+    var l = (a[0]-ALT_MIN)/(ALT_MAX-ALT_MIN)*100, w = (a[1]-a[0])/(ALT_MAX-ALT_MIN)*100;
+    return '<div class="alt"><div class="alt-track" aria-hidden="true"><div class="alt-fill" style="left:'+l.toFixed(1)+'%;width:'+w.toFixed(1)+'%"></div></div>'+
+      '<div class="alt-scale"><span>'+ALT_MIN+' m</span><span>'+a[0]+'–'+a[1]+' m</span><span>'+ALT_MAX+' m</span></div></div>';
+  }
+
+  function render(){
+    Array.prototype.forEach.call(seg.children, function(b){ b.setAttribute("aria-pressed", parseInt(b.textContent,10)===n ? "true":"false"); });
+    var html = chalets.map(function(c){
+      var fits = n + 1 <= c.places;
+      var lo = c.prix[0]/n, hi = c.prix[1]/n;
+      var tlo = lo + c.forfait + EXTRA + c.route, thi = hi + c.forfait + EXTRA + c.route;
+      var money = fits
+        ? '<div><div class="k">Logement</div><div class="v">'+range(c.prix[0],c.prix[1])+'</div><div class="s">la semaine</div></div>'+
+          '<div><div class="k">Par personne</div><div class="v">'+range(lo,hi)+'</div><div class="s">logement seul</div></div>'+
+          '<div><div class="k">Total estimé</div><div class="v big">'+range(tlo,thi)+'</div><div class="s">par personne, tout compris</div></div>'
+        : '<div style="grid-column:1/-1"><div class="full">Trop petit pour '+n+' payeurs + Milo : '+c.places+' places au maximum.</div></div>';
+      return '<article class="card" aria-labelledby="t-'+c.id+'">'+
+        '<div class="card-head"><div class="top"><span class="letter">OPTION '+c.id+'</span>'+
+        '<span class="badge '+(c.verifie?'ok':'wait')+'">'+esc(c.badge)+'</span></div>'+
+        '<h2 id="t-'+c.id+'">'+esc(c.nom)+'</h2><div class="station">'+esc(c.station)+'</div></div>'+
+        '<div class="money">'+money+'</div>'+
+        '<div class="body"><dl>'+
+          '<dt>Dates</dt><dd>'+esc(c.dates)+'</dd>'+
+          '<dt>Couchage</dt><dd>'+c.places+' places · '+esc(c.chambres)+'</dd>'+
+          '<dt>Pistes</dt><dd>'+esc(c.pistes)+'</dd>'+
+          '<dt>Domaine</dt><dd>'+esc(c.domaine)+altBar(c.alt)+'</dd>'+
+          '<dt>Forfait</dt><dd>'+esc(c.forfaitTxt)+'</dd>'+
+          '<dt>Route</dt><dd>'+esc(c.routeTxt)+' depuis Nantes</dd>'+
+          '<dt>Avis</dt><dd>'+esc(c.avis)+'</dd>'+
+        '</dl>'+
+        '<div class="pm"><div class="plus"><h3>Points forts</h3><ul>'+c.plus.map(function(p){return '<li>'+esc(p)+'</li>';}).join('')+'</ul></div>'+
+        '<div class="minus"><h3>Points faibles</h3><ul>'+c.moins.map(function(p){return '<li>'+esc(p)+'</li>';}).join('')+'</ul></div></div>'+
+        '<a class="link" href="'+c.url+'" target="_blank" rel="noopener">Voir l\'annonce</a>'+
+        '</div></article>';
+    }).join('');
+    document.getElementById("cards").innerHTML = html;
+  }
+  render();
+})();
+</script>
+
+</body>
+</html>
